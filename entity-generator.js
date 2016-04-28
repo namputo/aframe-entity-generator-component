@@ -1,15 +1,10 @@
-if (typeof AFRAME === 'undefined') {
-  throw new Error('Component attempted to register before AFRAME was available.');
-}
-
 /**
- * Entity Generator component for A-Frame.
  * Create number of entities given a mixin.
  */
 AFRAME.registerComponent('entity-generator', {
   schema: {
     mixin: {default: ''},
-    num: {default: 10}
+    num: {default: 1000}
   },
 
   init: function () {

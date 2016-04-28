@@ -1,35 +1,16 @@
-## aframe-component-boilerplate
+## aframe-entity-generator-component
 
-> This is not at all means required for writing an A-Frame component. It is intended for publishing and sharing a component for the community to re-use.
-
-Boilerplate for sharing [A-Frame](https://aframe.io) [components](https://aframe.io/docs/core/component.html):
-
-1. `npm install && npm run unboil` to rename and trim stuff.
-2. [Write your component](http://ngokevin.com/blog/aframe-component).
-3. Build examples (`npm run dev` to watch for changes to build example bundles).
-4. `npm publish` and commit the `dist/` files.
-5. `npm run ghpages` to share with people.
-6. Share on [Slack](https://aframevr-slack.herokuapp.com/) and [awesome-aframe](https://github.com/aframevr/awesome-aframe)!
-
-Examples:
-
-- [aframe-layout-component](https://github.com/ngokevin/aframe-layout-component)
-- [aframe-text-component](https://github.com/ngokevin/aframe-text-component)
-- [aframe-extrude-and-lathe](https://github.com/JosePedroDias/aframe-extrude-and-lathe)
-- [aframe-obj-loader-component](https://github.com/donmccurdy/aframe-obj-loader-component)
-- [aframe-physics-component](https://github.com/ngokevin/aframe-physics-component)
-- [aframe-template-component](https://github.com/ngokevin/aframe-template-component)
-
---trim--
-## aframe-example-component
-
-A example component for [A-Frame](https://aframe.io).
+An entity generator component for [A-Frame](https://aframe.io). Given a mixin,
+generates a number of entities as children. Pairs well with [Randomizer
+Components](https://github.com/ngokevin/aframe-randomizer-components) for
+a large number of entities with random elements.
 
 ### Properties
 
-| Property | Description | Default Value |
-| -------- | ----------- | ------------- |
-|          |             |               |
+| Property | Description                                          | Default Value |
+| -------- | -----------                                          | ------------- |
+| mixin    | Mixin ID that will be applied to generated entities. | ''            |
+| num      | Number of entities to generate.                      | 10            |
 
 ### Usage
 
@@ -41,12 +22,17 @@ Install and use by directly including the [browser files](dist):
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/ngokevin/aframe-component-boilerplate/master/dist/aframe-example-component.min.js"></script>
+  <script src="https://rawgit.com/ngokevin/aframe-entity-generator-component/master/dist/aframe-entity-generator-component.min.js"></script>
 </head>
 
 <body>
   <a-scene>
-    <a-entity example="exampleProp: exampleVal"></a-entity>
+    <a-assets>
+      <a-mixin id="red" material="color: red"></a-mixin>
+      <a-mixin id="candle" geometry="primitive: sphere" light></a-mixin>
+    </a-assets>
+
+    <a-entity entity-generator="mixin: red candle"></a-entity>
   </a-scene>
 </body>
 ```
@@ -56,12 +42,12 @@ Install and use by directly including the [browser files](dist):
 Install via NPM:
 
 ```bash
-npm install aframe-example-component
+npm install aframe-entity-generator-component
 ```
 
 Then register and use.
 
 ```js
 require('aframe');
-require('aframe-example-component');
+require('aframe-entity-generator-component');
 ```
