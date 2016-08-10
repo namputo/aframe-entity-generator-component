@@ -55,7 +55,8 @@
 	AFRAME.registerComponent('entity-generator', {
 	  schema: {
 	    mixin: {default: ''},
-	    num: {default: 10}
+	    num: {default: 10},
+	    name: {default: "new"}
 	  },
 
 	  init: function () {
@@ -65,6 +66,7 @@
 	    for (var i = 0; i < data.num; i++) {
 	      var entity = document.createElement('a-entity');
 	      entity.setAttribute('mixin', data.mixin);
+	      entity.setAttribute('id',data.name+i);
 	      this.el.appendChild(entity);
 	    }
 	  }
